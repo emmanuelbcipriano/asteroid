@@ -1,21 +1,14 @@
 import pygame
 from constants import *
-import player
-import circleshape
-
-screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-
+from player import Player
 
 
 def main():
-    print("Starting asteroids!")
-    print(f"Screen width: {SCREEN_WIDTH}")
-    print(f"Screen height: {SCREEN_HEIGHT}")
-
     pygame.init()
-
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
-    dt = float(0)
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    dt = 0
 
     while True:
         for event in pygame.event.get():
@@ -23,17 +16,12 @@ def main():
                 return
         
         screen.fill("black")
-        
-        #draw player
-        player = pl.Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         player.draw(screen)
-
         pygame.display.flip()
-        dt = clock.tick(60.0) / 1000
 
-
-        
-
+        # limit the framerate to 60 FPS
+        dt = clock.tick(60) / 1000
+        player.update(dt)
 
 if __name__ == "__main__":
     main()
