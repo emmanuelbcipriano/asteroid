@@ -2,6 +2,9 @@ from circleshape import CircleShape
 from constants import *
 import pygame
 
+#updatables = pygame.sprite.Group()
+#drawables = pygame.sprite.Group()
+#Player.containers = (updatables, drawables)
 class Player(CircleShape):
 
     def __init__(self, x, y):
